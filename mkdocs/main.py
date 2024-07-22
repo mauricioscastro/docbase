@@ -54,7 +54,7 @@ def define_env(env):
         try:
           with conn:
             with conn.cursor() as cur:
-              cur.execute("select * from version")
+              cur.execute(query)
               column_descriptions = cur.description
               column_names = [desc[0] for desc in column_descriptions]
               data_rows = cur.fetchall()
