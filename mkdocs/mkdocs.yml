@@ -141,7 +141,7 @@ plugins:
       cover_logo: img/hcreport.png
       cover_subtitle: Company - LATAM - My Team
       toc_level: 3
-      enabled_if_env: ENABLE_PDF_EXPORT    
+      # enabled_if_env: ENABLE_PDF_EXPORT    
       # verbose: true
   - macros:
       include_yaml:
