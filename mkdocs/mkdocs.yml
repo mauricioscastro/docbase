@@ -1,0 +1,167 @@
+theme:
+  name: material
+  custom_dir: overrides
+  language: "en"
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: red
+      accent: red
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: hcr_black
+      accent: red
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  logo: img/hcreport.png
+  favicon: img/favicon.ico
+  icon:
+    repo: material/github
+    admonition:
+      note: fontawesome/solid/note-sticky
+      abstract: fontawesome/solid/book
+      info: fontawesome/solid/circle-info
+      tip: fontawesome/solid/bullhorn
+      success: fontawesome/solid/check
+      question: fontawesome/solid/circle-question
+      warning: fontawesome/solid/triangle-exclamation
+      failure: fontawesome/solid/bomb
+      danger: fontawesome/solid/skull
+      bug: fontawesome/solid/robot
+      example: fontawesome/solid/flask
+      quote: fontawesome/solid/quote-left 
+  features:
+    - content.code.copy
+    - search.suggest
+    - navigation.path
+    - navigation.indexes
+    # - navigation.expand
+    # - navigation.sections
+    # - navigation.tabs
+    # - toc.follow
+    # - toc.integrate    
+    # - navigation.footer
+
+extra_css:
+  - css/extra.css
+
+markdown_extensions:
+  - tables
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+plugins:
+  - search
+  - offline
+  - privacy:
+      enabled: true
+      cache: true
+  - tags
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+        remove_comments: true
+  - i18n:
+      docs_structure: folder
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true      
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: pt
+          name: Português
+          build: true  
+          admonition_translations:
+            tip: Dica
+            warning: Atenção    
+          nav_translations:
+            Home: Minha Casa    
+            Hello: Olá    
+        - locale: es
+          name: Español
+          build: true         
+          admonition_translations:
+            tip: Consejo
+            warning: Atención     
+          nav_translations:
+            Home: Mi Casa     
+            Hello: Hola       
+  - with-pdf:
+      output_path: site.pdf
+      custom_template_path: withpdf
+      cover_logo: img/hcreport.png
+      cover_subtitle: Company - LATAM - My Team
+      toc_level: 3
+      enabled_if_env: ENABLE_PDF_EXPORT    
+      # verbose: true
+  - macros:
+      include_yaml:
+        - sql: data/sql.yaml      
+
+site_name: Health Check Report
+site_author: !ENV [SITE_AUTHOR, "John Doe"]
+copyright: Copyright &copy; 2023 - 2024 Company - Team - LATAM
+
+extra:
+  site_build_date: !ENV [SITE_BUILD_DATE, "1970-01-01"]
+  clusters: !ENV [HCR_CLUSTERS, "cluster1, cluster2, cluster3"]
+  xxx: ["eu", "você"]
+  l1: "[hello](http://cnn.com)"
+  l2: "http://cnn.com"
+  
+# https://ultrabug.github.io/mkdocs-static-i18n/setup/localizing-navigation/  
+nav:
+  - Home: index.md
+  - Hello:
+    - hello/index.md
+    - Test: hello/x.md
+

@@ -1,0 +1,28 @@
+connection:
+  dbname: postgres
+  user: postgres
+  password: 
+  host: localhost
+  port: 5432
+
+query:
+    example: |- 
+      select cluster_id,
+             name,
+             namespace,
+             jptxt(_, '$.spec.containers[*].resources')  resources,
+             jptxt(_, '$.spec.containers[*].readinessProbe') readiness,
+             jptxt(_, '$.spec.containers[*].livenessProbe')  liveness,
+             jp(_, '$.metadata.ownerReferences') owner
+      from
+        pods_v1
+      where
+        1 = 1 and
+        namespace !~ 'openshift.*' and
+        namespace !~ 'open-cluster.*'
+        order by
+        namespace, name
+
+    version: |-
+      select * from version
+

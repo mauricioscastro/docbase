@@ -1,0 +1,208 @@
+* {
+    font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif !important;
+}
+
+.md-typeset code, .md-typeset kbd, .md-typeset pre {
+    color: var(--md-code-fg-color);
+    direction: ltr;
+    font-variant-ligatures: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
+  font-family: 'Roboto', 'Gentium Book Basic', 'Helvetica Neue', Helvetica, Arial, 'Noto Sans JP', sans-serif !important;
+}
+
+article {
+    h1 {
+      border-bottom: 0 !important;
+    }
+  
+    h2 {
+      border-bottom: 0 !important;
+    }
+  
+    h3 {
+      border-bottom: 0 !important;
+    }
+  
+    h1>.pdf-order,
+    h2>.pdf-order,
+    h3>.pdf-order {
+      padding-left: 6px;
+      // padding-right: 0.8rem;
+    }
+  }
+
+// TOC page
+article#doc-toc {
+
+    margin: 0 .8rem 1.2rem;
+    padding-top: .6rem;
+    font-size: 14pt;
+    line-height: 1.6;
+  
+    &>h1 {
+      margin: 0 0 2rem;
+      color: rgba(0, 0, 0, .54);
+      font-size: 1.0rem;
+      font-weight: 300;
+      letter-spacing: -.01em;
+      page-break-after: auto;
+      page-break-inside: auto;
+      bookmark-level: none;
+  
+      &::before {
+        display: block;
+        margin-top: -9px;
+        padding-top: 9px;
+        content: "";
+      }
+    }
+  
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-left: 1em;
+      font-size: 12pt;
+      page-break-inside: auto !important;
+    }
+  
+    li {
+      list-style: none;
+      &>a {
+        color: inherit;
+        text-decoration: none;
+  
+        padding-top: 0.4rem;
+        border-bottom: 1px dotted #ddd;
+        display: inline-block;
+        width: 100%;
+  
+        &>.pdf-order {
+          padding-right: 0.5em;
+        }
+  
+        &::after {
+          // not support leader yet.
+          float: right;
+          content: target-counter(attr(href), page);
+        }
+      }
+    }
+  }
+ 
+  
+  @media print {
+    @page {
+      size: A4 portrait !important;
+      margin: 1.0cm 1.0cm 1.2cm 1.0cm !important;
+    }
+
+    html {
+      font-size: 100% !important;
+      font-family: 'Roboto','Kelmscott Roman NF', 'Noto Serif JP', serif !important;
+    }
+  
+    body {
+      font-size: 12pt !important;
+      font-family: 'Roboto', 'Classico URW T OT', 'Noto Serif JP', serif !important;
+    }
+  
+    article {
+      font-size: 100% !important;
+      line-height: 1.6 !important;
+      text-align: justify !important;
+    }
+  
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    label {
+      font-family: 'Roboto', 'Gentium Book Basic', 'Helvetica Neue', Helvetica, Arial, 'Noto Sans JP', sans-serif !important;
+      page-break-after: avoid !important;
+    }
+  
+    pre,
+    code,
+    var,
+    samp,
+    kbd,
+    tt {
+      font-family: 'Roboto Mono', 'Noto Sans Mono CJK JP', 'Courier New', monospace, serif !important;
+      font-size: 100% !important;
+    }
+  
+    pre code,
+    pre var,
+    pre samp,
+    pre kbd,
+    pre tt {
+        font-family: 'Roboto Mono', 'Noto Sans Mono CJK JP', 'Courier New', monospace, serif !important;
+        font-size: 100% !important;
+    }
+
+    p.admonition-title::before {
+      margin-left: -1.5rem !important;
+      margin-top: 0.3rem !important;
+    }
+
+    .md-typeset table:not([class]) {
+      margin-left: 3mm !important;
+      width: 181mm !important;
+      table-layout: fixed !important;
+      page-break-inside: auto !important;
+      page-break-before: avoid !important;
+    }
+
+    /* light mode alternating table bg colors */
+    .md-typeset__table table:not([class]) tr {
+      border-bottom: 5px;
+      border-color: #000000;
+    }
+  }  
+
+
+@page {
+	margin: 1.0cm 1.0cm 1.2cm 1.0cm !important;
+	border: 0 0 0 0 !important;
+    padding: 0 0 0 0 !important;
+    @bottom-right {
+        font-size: 8pt !important;
+        content: counter(page)'/'counter(pages) !important;
+    }
+    @bottom-left {
+        font-size: 6pt !important;
+        content: string(copyright) !important;
+    }
+    @bottom-center {
+        font-size: 0 !important;
+        content: '' !important;
+    }    
+}
+
+@page :first {
+  margin: 0 !important;
+  @bottom-right {
+    font-size: 0 !important;
+    content: '' !important;
+  } 
+  @bottom-center {
+    font-size: 0 !important;
+    content: '' !important;
+  } 
+  @bottom-left {
+    font-size: 0;
+    content: '';
+  } 
+}
+
+
