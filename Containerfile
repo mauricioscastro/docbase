@@ -1,4 +1,4 @@
-FROM default-route-openshift-image-registry.apps.semace.6z71.p2.openshiftapps.com/openshift/nginx:latest
+FROM image-registry.openshift-image-registry:5000/openshift/nginx:latest
 
 
 COPY --chown=default nginx.conf /etc/nginx/
