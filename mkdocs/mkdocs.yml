@@ -146,6 +146,13 @@ plugins:
   - macros:
       include_yaml:
         - sql: data/sql.yaml      
+  
+# https://ultrabug.github.io/mkdocs-static-i18n/setup/localizing-navigation/  
+nav:
+  - Home: index.md
+  - Hello:
+    - hello/index.md
+    - Test: hello/x.md
 
 site_name: Health Check Report
 site_author: !ENV [SITE_AUTHOR, "John Doe"]
@@ -157,11 +164,4 @@ extra:
   xxx: ["eu", "você"]
   l1: "[hello](http://cnn.com)"
   l2: "http://cnn.com"
-  
-# https://ultrabug.github.io/mkdocs-static-i18n/setup/localizing-navigation/  
-nav:
-  - Home: index.md
-  - Hello:
-    - hello/index.md
-    - Test: hello/x.md
 
