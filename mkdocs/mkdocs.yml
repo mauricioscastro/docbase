@@ -164,4 +164,6 @@ extra:
   xxx: ["eu", "você"]
   l1: "[hello](http://cnn.com)"
   l2: "http://cnn.com"
+  x:
+    author: Zé Ninguém
 
