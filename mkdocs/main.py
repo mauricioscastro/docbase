@@ -14,6 +14,8 @@ logger.addHandler(handler)
 
 def define_env(env):
 
+    env.variables['hide_secondary_side_bar'] = "<script>document.getElementsByClassName('md-sidebar--secondary')[0].style.display = 'none';</script>"
+
     def postgres_connection():
       try:
         conn = edict(env.variables.sql['connection'])

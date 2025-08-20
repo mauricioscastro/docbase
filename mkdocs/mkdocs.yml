@@ -1,3 +1,4 @@
+# mkdocs serve -a 0.0.0.0:8089 -w data/ -w docs/ -w withpdf/
 theme:
   name: material
   custom_dir: overrides
@@ -124,8 +125,8 @@ plugins:
             tip: Dica
             warning: Atenção    
           nav_translations:
-            Home: Minha Casa    
-            Hello: Olá    
+            Report: Relatório
+            Hello: Oi
         - locale: es
           name: Español
           build: true         
@@ -133,7 +134,7 @@ plugins:
             tip: Consejo
             warning: Atención     
           nav_translations:
-            Home: Mi Casa     
+            Report: Reporte     
             Hello: Hola       
   - with-pdf:
       output_path: site.pdf
@@ -147,16 +148,16 @@ plugins:
       include_yaml:
         - sql: data/sql.yaml      
   
-# https://ultrabug.github.io/mkdocs-static-i18n/setup/localizing-navigation/  
-nav:
-  - Home: index.md
+nav: # check: plugins -> i18n -> languages -> locale -> nav_translations
+  - Report: index.md
+  - API Resources: apiresources.md
   - Hello:
     - hello/index.md
     - Test: hello/x.md
 
 site_name: Health Check Report
 site_author: !ENV [SITE_AUTHOR, "John Doe"]
-copyright: Copyright &copy; 2023 - 2024 Company - Team - LATAM
+copyright: Copyright &copy; 2023-2025 - Adoption Team - LATAM
 
 extra:
   site_build_date: !ENV [SITE_BUILD_DATE, "1970-01-01"]
@@ -164,6 +165,7 @@ extra:
   xxx: ["eu", "você"]
   l1: "[hello](http://cnn.com)"
   l2: "http://cnn.com"
+  authors: ["Zé Ninguém", "João da Silva"]
   x:
     author: Zé Ninguém
 

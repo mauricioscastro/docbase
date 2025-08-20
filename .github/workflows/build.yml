@@ -1,0 +1,31 @@
+
+name: build and push docbase img
+
+on:
+  push:
+    branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build and push with Podman
+      env:
+        IMG: quay.io/hcreport/docbase
+        PODMAN_USR: hcreport+hcrepotrobot
+      run: |-
+        build_date=`date +'%Y%m%d%H%M%S'`          
+        short=`echo "${{ github.sha }}" | cut -c 1-7`
+        tag="${short}-${build_date}"
+
+        podman login -u=$PODMAN_USR -p=${{ secrets.DOCBASE_ROBOT_ON_QUAY }} quay.io
+        
+        podman build . -t $IMG:$tag
+        podman push $IMG:$tag
+        podman push $IMG:$tag $IMG:latest
+

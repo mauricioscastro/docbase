@@ -24,7 +24,9 @@
       </h2>
       <p></p>
       <p>
-        <div style="font-size: 1.2em;">{{ x.author }}</div>
+        {% for author in authors %}
+        <div style="font-size: 1.2em;">{{ author }}</div>
+        {% endfor %}
       </p>
       <p>
         <div>{{ site_build_date }}</div>

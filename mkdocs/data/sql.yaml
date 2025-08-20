@@ -15,14 +15,16 @@ query:
              jptxt(_, '$.spec.containers[*].livenessProbe')  liveness,
              jp(_, '$.metadata.ownerReferences') owner
       from
-        pods_v1
+        resources
       where
-        1 = 1 and
+        api_id = 'pods' and
         namespace !~ 'openshift.*' and
         namespace !~ 'open-cluster.*'
         order by
         namespace, name
 
     version: |-
-      select * from version
+      select * from versions
 
+    apiresources: |-
+      select api_k, api_gv, namespaced from apiresources order by api_k, api_gv
