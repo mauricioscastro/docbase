@@ -160,6 +160,7 @@ site_author: !ENV [SITE_AUTHOR, "John Doe"]
 copyright: Copyright &copy; 2023-2025 - Adoption Team - LATAM
 
 extra:
+  uid: 12345
   site_build_date: !ENV [SITE_BUILD_DATE, "1970-01-01"]
   clusters: !ENV [HCR_CLUSTERS, "cluster1, cluster2, cluster3"]
   xxx: ["eu", "você"]

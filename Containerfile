@@ -2,24 +2,36 @@ FROM registry.access.redhat.com/ubi9/python-312
 
 USER 0
 
-RUN dnf install -y pango nginx && \
+ENV MKDOCS=/opt/app-root/mkdocs
+
+RUN rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm && \
+    dnf install -y pango nginx && \
+    dnf install -y inotify-tools && \
     pip install --upgrade pip && \
     pip install mkdocs mkdocs-macros-plugin mkdocs-with-pdf weasyprint  mkdocs-minify-plugin mkdocs-mermaid2-plugin mkdocs-static-i18n[material] mkdocs-static-i18n easydict==1.2 psycopg2 mkdocs-section-index mkdocs-literate-nav pyyaml jq yq && \
-    mkdir -p /data/site && \
-    echo "true" > /data/site/ready.json && \
-    chown -R default /data /var/log/nginx /usr/share/nginx /etc/nginx
+    mkdir -p $MKDOCS/site && \
+    echo "true" > $MKDOCS/site/ready.json && \
+    chown -R default $MKDOCS /var/log/nginx /usr/share/nginx /etc/nginx 
 
 COPY --chown=default nginx.conf /etc/nginx/
-COPY --chown=default 404.html /data/site/
-COPY --chown=default mkdocs /data/
+COPY --chown=default 404.html $MKDOCS/site/
+COPY --chown=default mkdocs $MKDOCS/
 
 EXPOSE 8089
 
 ENV PATH=/opt/app-root/bin:$PATH
 
-USER 1001 
+USER default 
 
-WORKDIR /data
+WORKDIR /opt/app-root/mkdocs
 
-ENTRYPOINT ["nginx"]
-CMD ["-g", "daemon off;"]
+ENTRYPOINT \
+  inotifywait -q -m -r -e create,delete,modify,move \
+  --format '%T inotifywait %e %w%f' --timefmt '%Y-%m-%d %H:%M:%S' \
+  docs data withpdf | while read line; do \
+    echo $line; \
+    mkdocs build; \
+  done & \
+  nginx -g "daemon off;"
+
+
