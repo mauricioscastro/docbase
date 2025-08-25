@@ -39,6 +39,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     
 | Col 1 | Col 2 | Col 3 | Col 4 | Col 5 |
 | - | - | - | - | - |
-{% for r in queryddb(sql.query.version) -%}
+{% for r in querydb(sql.query.version) -%}
 | {{ r[0] }} | {{ r[1] }} | {{ r[2] }} | {{ r[3] }} | {{ r[4] }} |
 {% endfor %}

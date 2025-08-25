@@ -26,7 +26,7 @@ USER default
 WORKDIR /opt/app-root/mkdocs
 
 ENTRYPOINT \
-  inotifywait -q -m -r -e create,delete,modify,move,close_write \
+  inotifywait -q -m -r -e create,delete,delete_self,modify,move,close_write \
   --format '%T inotifywait %e %w%f' --timefmt '%Y-%m-%d %H:%M:%S' \
   docs data withpdf mkdocs.yaml | while read line; do \
     echo $line; \

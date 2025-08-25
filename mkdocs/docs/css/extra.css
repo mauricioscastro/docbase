@@ -79,7 +79,7 @@ h1 {
 
 table {
 	word-wrap: break-word !important;
-	border-radius: 10px !important;
+	border-radius: 5px !important;
 	width: 100% !important;
 	word-wrap: break-word !important;
 }
@@ -97,11 +97,11 @@ table {
 }
 
 th:last-child {
-	border-top-right-radius: 10px !important;
+	border-top-right-radius: 5px !important;
 }
 
 th:first-child {
-	border-top-left-radius: 10px !important;
+	border-top-left-radius: 5px !important;
 }
 
 [data-md-color-scheme="slate"] tr {
@@ -169,4 +169,8 @@ th, td {
 	}
 }
 
-
+/* .md-typeset .admonition,
+.md-typeset details {
+  border-width: 0;
+  border-left-width: 4px;
+} */

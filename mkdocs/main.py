@@ -4,6 +4,7 @@ import logging
 import psycopg2
 import json  
 from datetime import datetime
+import base64
 
 logger = logging.getLogger("hcr.macros")
 logger.setLevel(logging.DEBUG)
@@ -15,6 +16,15 @@ logger.addHandler(handler)
 def define_env(env):
 
     env.variables['hide_secondary_side_bar'] = "<script>document.getElementsByClassName('md-sidebar--secondary')[0].style.display = 'none';</script>"
+
+    def base64(filepath):
+      try:
+          with open(filepath, 'rb') as file:
+              encoded_content = base64.b64encode(file.read())
+              return encoded_content.decode('utf-8')
+      except Exception as e:
+          logger.error(e)   
+      return ""
 
     def postgres_connection():
       try:
@@ -35,7 +45,7 @@ def define_env(env):
       return {name:getattr(env, name) for name in dir(env) if not name.startswith('_')}  
 
     @env.macro
-    def queryddb(query):
+    def querydb(query):
         logger.debug("queryddb query: " + query)
         conn = postgres_connection()
         try:
@@ -50,7 +60,7 @@ def define_env(env):
         return ()
 
     @env.macro
-    def queryddb_mdtable(query):
+    def querydb_mdtable(query):
         logger.debug("queryddb_mdtable query: " + query)
         conn = postgres_connection()
         try:
@@ -73,3 +83,4 @@ def define_env(env):
         finally:
           if conn: conn.close()
         return ""
+

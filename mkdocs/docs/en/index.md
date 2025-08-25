@@ -17,11 +17,14 @@
 {{ l1 }}
 
 {{ l2 }}
-
+??? note "SQL Code example"
+    ``` py
+    import tensorflow as tf
+    ```
 !!! tip
     Good morning
-!!! note
-    admonition
+!!! info
+    admonition info
 !!! abstract
     admonition
 !!! warning
@@ -52,7 +55,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 | Col 1 | Col 2 | Col 3 | Col 4 | Col 5 |
 | - | - | - | - | - |
-{% for r in queryddb(sql.query.version) -%}
+{% for r in querydb(sql.query.version) -%}
 | {{ r[0] }} | {{ r[1] }} | {{ r[2] }} | {{ r[3] }} | {{ r[4] }} |
 {% endfor %}
 
@@ -60,13 +63,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 | Col 1 | Col 2 | Col 3 | Col 4 | Col 5 | Col 6 | Col 7 |
 | - | - | - | - | - | - | - |
-{% for r in queryddb("select * from apiresources limit 25") -%}
+{% for r in querydb("select * from apiresources limit 25") -%}
 | {{ r[0] }} | {{ r[1] }} | {{ r[2] }} | {{ r[3] }} | {{ r[4] }} | {{ r[5] }} | {{ r[6] }} |
 {% endfor %}
 
 ### Table 3
 
-{{ queryddb_mdtable(sql.query.version) }}
+{{ querydb_mdtable(sql.query.version) }}
 
 
 {#

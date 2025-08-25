@@ -9,7 +9,7 @@
     <div style="{{ cell_head_style }}">Group Version</div>
     <div style="{{ cell_head_style }}">Namespaced</div>
   </div>
-{% for r in queryddb(sql.query.apiresources) -%}
+{% for r in querydb(sql.query.apiresources) -%}
   <div style="display: table-row">
     <div style="{{ cell_style }}">{{ r[0] }}</div>
     <div style="{{ cell_style }}">{{ r[1] }}</div>
