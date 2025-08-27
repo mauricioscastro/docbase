@@ -147,6 +147,7 @@ plugins:
   - macros:
       include_yaml:
         - sql: data/sql.yaml      
+        - hcr: data/hcr.yaml
   
 nav: # check: plugins -> i18n -> languages -> locale -> nav_translations
   - Report: index.md
