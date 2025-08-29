@@ -34,7 +34,7 @@ def define_env(env):
           conn.host = os.environ['DUMPDB_HOST']
           logger.debug("connection host from env: " + conn.host)
         except Exception as e:
-          logger.error(e)
+          logger.error(e) 
           return None
         return psycopg2.connect(dbname=conn.dbname, user=conn.user, password=conn.password, host=conn.host, port=conn.port)
       except Exception as e:
