@@ -24,6 +24,7 @@ def define_env(env):
               return encoded_content.decode('utf-8')
       except Exception as e:
           logger.error(e)   
+          pass
       return ""
 
     def postgres_connection():
@@ -35,10 +36,11 @@ def define_env(env):
           logger.debug("connection host from env: " + conn.host)
         except Exception as e:
           logger.error(e) 
-          return None
+          pass 
         return psycopg2.connect(dbname=conn.dbname, user=conn.user, password=conn.password, host=conn.host, port=conn.port)
       except Exception as e:
         logger.error(e)
+        pass
       return None
 
     @env.macro
@@ -54,8 +56,9 @@ def define_env(env):
                 with conn.cursor() as cur:
                     cur.execute(query)
                     return cur.fetchall()
-        except Exception as e:          
-          logger.error(e)          
+        except Exception as e:     
+          logger.error(e)
+          pass
         finally:
           if conn: conn.close()
         return ()
@@ -81,6 +84,7 @@ def define_env(env):
               return table
         except Exception as e:          
           logger.error(e)         
+          pass
         finally:
           if conn: conn.close()
         return ""
