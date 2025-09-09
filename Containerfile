@@ -11,7 +11,7 @@ RUN rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.
     pip install mkdocs mkdocs-macros-plugin mkdocs-with-pdf weasyprint  mkdocs-minify-plugin mkdocs-mermaid2-plugin mkdocs-static-i18n[material] mkdocs-static-i18n easydict==1.2 psycopg2 mkdocs-section-index mkdocs-literate-nav pyyaml jq yq && \
     mkdir -p $MKDOCS/site && \
     echo "true" > $MKDOCS/site/ready.json && \
-    chown -R 1001:1001 $MKDOCS /var/log/nginx /usr/share/nginx /etc/nginx 
+    chown -R 1001:1001 $MKDOCS /var/log/nginx /usr/share/nginx /var/lib/nginx /etc/nginx 
 
 COPY --chown=1001:1001 nginx.conf /etc/nginx/
 COPY --chown=1001:1001 404.html $MKDOCS/site/
