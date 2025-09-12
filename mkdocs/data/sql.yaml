@@ -7,7 +7,7 @@ connection:
 
 query:
     example: |- 
-      select cluster_id,
+      select dump_id,
              name,
              namespace,
              jptxt(_, '$.spec.containers[*].resources')  resources,
