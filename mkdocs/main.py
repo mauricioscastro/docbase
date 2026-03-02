@@ -15,13 +15,23 @@ logger.addHandler(handler)
 
 def define_env(env):
 
+    env.conf['extra']['client'] = env.variables.hcr.get('client', 'Client') 
+    env.conf['extra']['authors'] = env.variables.hcr.get('authors', 'John Doe, Jane Doe')
+
+    if env.conf['extra'].get('site_build_date') == "1970-01-01":
+      env.conf['extra']['site_build_date'] = datetime.now().strftime("%Y-%m-%d")
+
+    if isinstance(env.conf['extra']['authors'], str):
+      env.conf['extra']['authors'] = env.conf['extra']['authors'].split(',')
+
     env.variables['hide_secondary_side_bar'] = "<script>document.getElementsByClassName('md-sidebar--secondary')[0].style.display = 'none';</script>"
 
-    def base64(filepath):
+    def base64_pdf_cover(filepath="withpdf/cover_img.png", destination="withpdf/cover.png.b64"):
       try:
           with open(filepath, 'rb') as file:
               encoded_content = base64.b64encode(file.read())
-              return encoded_content.decode('utf-8')
+              with open(destination, 'wb') as dest_file:
+                dest_file.write(encoded_content)
       except Exception as e:
           logger.error(e)   
       return ""
@@ -40,6 +50,8 @@ def define_env(env):
       except Exception as e:
         logger.error(e)
       return None
+
+    base64_pdf_cover()
 
     @env.macro
     def doc_env():

@@ -8,7 +8,7 @@ RUN rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.
     dnf install -y inotify-tools && \
     dnf install -y pango nginx && \
     pip install --upgrade pip && \
-    pip install mkdocs mkdocs-macros-plugin mkdocs-with-pdf weasyprint  mkdocs-minify-plugin mkdocs-mermaid2-plugin mkdocs-static-i18n[material] mkdocs-static-i18n easydict==1.2 psycopg2 mkdocs-section-index mkdocs-literate-nav pyyaml jq yq && \
+    pip install mkdocs mkdocs-macros-plugin mkdocs-with-pdf weasyprint  mkdocs-minify-plugin mkdocs-mermaid2-plugin mkdocs-static-i18n[material] mkdocs-static-i18n easydict==1.2 psycopg2 mkdocs-section-index mkdocs-literate-nav mkdocs-custom-tags-attributes pyyaml jq yq && \
     mkdir -p $MKDOCS/site && \
     echo "true" > $MKDOCS/site/ready.json && \
     chown -R 1001:1001 $MKDOCS /var/log/nginx /usr/share/nginx /var/lib/nginx /etc/nginx 

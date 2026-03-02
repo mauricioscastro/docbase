@@ -1,44 +1,43 @@
-# Bienvenido
+## Prefacio
 
-{{ config.site_author }}
+### Confidencialidad, Copyright y Responsabilidad
+Este documento contiene información confidencial que es para uso exclusivo de Red Hat ©, Inc y {{ client }}, copyright 2025 Red Hat, Inc. Todos los derechos reservados; y no debe compartirse con  personas que no pertenezcan a estas dos empresas. Este documento y cualquier parte del mismo no pueden copiarse, reproducirse, fotocopiarse, almacenarse electrónicamente en un sistema de recuperación, o transmitido de otro modo sin el consentimiento expreso por escrito de Red Hat. Red Hat no garantiza que este documento esté libre de errores u omisiones. Red Hat se reserva el derecho de realizar correcciones, actualizaciones, revisiones o cambios a la información aquí contenida.
 
-## Reported Clusters
+### Introducción
+El Launch Team es un equipo de expertos dedicados a la adopción de Red Hat Cloud Services. Compuesto por profesionales conocidos como Specialist Adoption Architects (SAA), este equipo está disponible para clientes estratégicos y seleccionados en América Latina. Nuestra misión es acelerar la adopción de servicios administrados de Red Hat como ARO, ROSA y OSD, garantizando que los clientes que sean elegibles y que ya hayan optado por estas tecnologías, cuenten con todo el apoyo necesario. El SAA será responsable de maximizar el valor de estas soluciones, proporcionando un proceso de adopción ágil, eficiente y sin complicaciones. El soporte ofrecido va desde recomendar arquitecturas de referencia hasta indicar la mejores prácticas y otras orientaciones estratégicas, garantizando que los clientes aprovechen al máximo los beneficios de Servicios administrados de Red Hat
 
-{{ clusters }}
-
-### SQL
-
-```sql
-{{ sql.query.example }}
-
-```
-
-### Links
-
-{{ l1 }}
-
-{{ l2 }}
-
-!!! tip
-
-    Bom dia
-
-## Prefácio
-### Confidencialidade, direitos autorais e responsabilidade
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-### Introdução
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 ### Sobre este documento
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-### Público
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-### Lista de verificação de nomenclatura
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-### Outro Item de Teste
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    
-| Col 1 | Col 2 | Col 3 | Col 4 | Col 5 |
-| - | - | - | - | - |
-{% for r in querydb(sql.query.version) -%}
-| {{ r[0] }} | {{ r[1] }} | {{ r[2] }} | {{ r[3] }} | {{ r[4] }} |
-{% endfor %}
+El propósito de este documento es informar los resultados de la ejecución del chequeo de salud realizado en la plataforma instalada de {{ client }}.
+
+### Audiencia
+Este documento está dirigido a administradores de sistemas, arquitectos y desarrolladores de {{ client }}.
+
+### Nomenclatura de Checklist
+| Imagen | Explicación |
+|-------|-------------|
+| :white_check_mark: | Pasa la revisión, no existen comentarios |
+| :warning: | Existen comentarios sobre los resultados obtenidos |
+| :negative_squared_cross_mark:{ .color_red }  | No pasa la revisión, se entregan recomendaciones  |
+
+### Terminología
+| Sigla | Significado |
+|-------|-------------|
+| SAA | Specialist Adoption Architect |
+| OCP | Openshift Container Platform |
+| ACS | Advanced Cluster Security  |
+| ACM | Advanced Cluster Management  |
+| ARO | Azure RedHat Openshift  |
+| ROSA | Red Hat OpenShift on AWS |
+| OSD | OpenShift Dedicated |
+| DNS | Domain Name System |
+| API | Application Programming Interface |
+| DHCP | Dynamic Host Configuration Protocol |
+| FQDN | Fully Qualified Domain Name |
+| PV | Persistent Volume |
+| PVC | Persistent Volume Claim |
+| AZ | Availability Zone |
+| CAS | Cluster Auto Scaling |
+| HPA | Horizontal Pod Autoscaling |
+| VPA | Vertical Pod Autoscaling |
+
+### Análisis y Recomendaciones de Arquitectura

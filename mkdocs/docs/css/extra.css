@@ -174,3 +174,7 @@ th, td {
   border-width: 0;
   border-left-width: 4px;
 } */
+
+.color_red {
+  color: #EE0F0F;
+}

@@ -1,3 +1,4 @@
+# inotifywait -q -m -r -e create,delete,modify,move --format '%T inotifywait %e %w%f' --timefmt '%Y-%m-%d %H:%M:%S' docs data withpdf main.py mkdocs.yaml --excludei cover.png.b64 | while read line; do echo -e "\n\n$line\n"; mkdocs build; done
 # mkdocs serve -a 0.0.0.0:8089 -w data/ -w docs/ -w withpdf/
 theme:
   name: material
@@ -72,7 +73,7 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
@@ -136,38 +137,29 @@ plugins:
           nav_translations:
             Report: Reporte     
             Hello: Hola       
+  - macros:
+      include_yaml:
+        - sql: data/sql.yaml      
+        - hcr: data/hcr/hcr.yaml
   - with-pdf:
       output_path: site.pdf
       custom_template_path: withpdf
       cover_logo: img/hcreport.png
-      cover_subtitle: Company - LATAM - My Team
+      # cover_subtitle: Company - LATAM - My Team
       toc_level: 3
       enabled_if_env: ENABLE_PDF_EXPORT    
       # verbose: true
-  - macros:
-      include_yaml:
-        - sql: data/sql.yaml      
-        - hcr: data/hcr.yaml
   
 nav: # check: plugins -> i18n -> languages -> locale -> nav_translations
   - Report: index.md
+  - Dump File: hcreport.json.gz
   - API Resources: apiresources.md
-  - Hello:
-    - hello/index.md
-    - Test: hello/x.md
 
 site_name: Health Check Report
-site_author: !ENV [SITE_AUTHOR, "John Doe"]
-copyright: Copyright &copy; 2023-2025 - Adoption Team - LATAM
+copyright: Copyright &copy; 2023-2026 - Adoption Team - LATAM
 
 extra:
-  uid: 12345
-  site_build_date: !ENV [SITE_BUILD_DATE, "1970-01-01"]
-  clusters: !ENV [HCR_CLUSTERS, "cluster1, cluster2, cluster3"]
-  xxx: ["eu", "você"]
-  l1: "[hello](http://cnn.com)"
-  l2: "http://cnn.com"
-  authors: ["Zé Ninguém", "João da Silva"]
-  x:
-    author: Zé Ninguém
+  site_build_date: !ENV [SITE_BUILD_DATE, "1970-01-01"] # default to epoch if not set
+  authors: !ENV [SITE_AUTHORS,  "John Doe, Jane Doe"] # comma-separated list of authors
+  client: !ENV [SITE_COVER_SUBTITLE, SITE_CLIENT_NAME, "The Client"]
 
