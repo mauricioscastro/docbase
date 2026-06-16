@@ -6,15 +6,15 @@ ENV MKDOCS=/opt/app-root/mkdocs
 
 RUN rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm && \
     dnf install -y inotify-tools && \
-    dnf install -y pango nginx && \
+    dnf install -y pango nginx graphviz && \
     pip install --upgrade pip && \
-    pip install mkdocs mkdocs-macros-plugin mkdocs-with-pdf weasyprint  mkdocs-minify-plugin mkdocs-mermaid2-plugin mkdocs-static-i18n[material] mkdocs-static-i18n easydict==1.2 psycopg2 mkdocs-section-index mkdocs-literate-nav mkdocs-custom-tags-attributes pyyaml jq yq && \
+    pip install mkdocs mkdocs-macros-plugin mkdocs-with-pdf weasyprint mkdocs-minify-plugin mkdocs-mermaid2-plugin mkdocs-static-i18n[material] mkdocs-static-i18n easydict==1.2 psycopg2 mkdocs-section-index mkdocs-literate-nav mkdocs-custom-tags-attributes pyyaml jq yq diagrams queries && \
     mkdir -p $MKDOCS/site && \
     echo "true" > $MKDOCS/site/ready.json && \
     chown -R 1001:1001 $MKDOCS /var/log/nginx /usr/share/nginx /var/lib/nginx /etc/nginx 
 
 COPY --chown=1001:1001 nginx.conf /etc/nginx/
-COPY --chown=1001:1001 404.html $MKDOCS/site/
+COPY --chown=1001:1001 mkdocs/docs/404.html $MKDOCS/site/
 COPY --chown=1001:1001 mkdocs $MKDOCS/
 
 EXPOSE 8089

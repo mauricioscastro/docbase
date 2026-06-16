@@ -5,6 +5,11 @@ import psycopg2
 import json  
 from datetime import datetime
 import base64
+from diagrams import Cluster, Diagram
+from diagrams.aws.compute import ECS
+from diagrams.aws.database import ElastiCache, RDS
+from diagrams.aws.network import ELB
+from diagrams.aws.network import Route53
 
 logger = logging.getLogger("hcr.macros")
 logger.setLevel(logging.DEBUG)
@@ -12,6 +17,46 @@ handler = logging.StreamHandler()
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
+
+def generate_base64_pdf_cover(filepath="withpdf/cover_img.png", destination="withpdf/cover.png.b64"):
+  try:
+      with open(filepath, 'rb') as file:
+          encoded_content = base64.b64encode(file.read())
+          with open(destination, 'wb') as dest_file:
+            dest_file.write(encoded_content)
+  except Exception as e:
+      logger.error(e)   
+
+def postgres_connection(env):
+  try:
+    conn = edict(env.variables.sql['connection'])
+    logger.debug("connection: " + json.dumps(conn))
+    try:
+      conn.host = os.environ['DUMPDB_HOST']
+      logger.debug("connection host from env: " + conn.host)
+    except Exception as e:
+      logger.info("env var not found or unused: " + str(e))
+      pass
+    return psycopg2.connect(dbname=conn.dbname, user=conn.user, password=conn.password, host=conn.host, port=conn.port)
+  except Exception as e:
+    logger.error(e)
+  return None
+
+def generate_diagram():
+    with Diagram("Current Architecture", 
+                 filename="docs/img/architecture", 
+                 graph_attr={"bgcolor": "transparent", "fontcolor": "#9F76C1"}, 
+                 node_attr={"fontcolor": "#9F76C1"}, 
+                 show=False):
+        dns = Route53("DNS")
+        lb = ELB("Load Balancer")
+        db = RDS("Database")
+        cache = ElastiCache("Cache")
+        ecs = ECS("ECS Cluster")
+
+        dns >> lb >> ecs
+        ecs >> db
+        ecs >> cache
 
 def define_env(env):
 
@@ -26,32 +71,8 @@ def define_env(env):
 
     env.variables['hide_secondary_side_bar'] = "<script>document.getElementsByClassName('md-sidebar--secondary')[0].style.display = 'none';</script>"
 
-    def base64_pdf_cover(filepath="withpdf/cover_img.png", destination="withpdf/cover.png.b64"):
-      try:
-          with open(filepath, 'rb') as file:
-              encoded_content = base64.b64encode(file.read())
-              with open(destination, 'wb') as dest_file:
-                dest_file.write(encoded_content)
-      except Exception as e:
-          logger.error(e)   
-      return ""
-
-    def postgres_connection():
-      try:
-        conn = edict(env.variables.sql['connection'])
-        logger.debug("connection: " + json.dumps(conn))
-        try:
-          conn.host = os.environ['DUMPDB_HOST']
-          logger.debug("connection host from env: " + conn.host)
-        except Exception as e:
-          logger.info("env var not found or unused: " + str(e))
-          pass
-        return psycopg2.connect(dbname=conn.dbname, user=conn.user, password=conn.password, host=conn.host, port=conn.port)
-      except Exception as e:
-        logger.error(e)
-      return None
-
-    base64_pdf_cover()
+    generate_diagram()
+    generate_base64_pdf_cover()
 
     @env.macro
     def doc_env():
@@ -60,7 +81,7 @@ def define_env(env):
     @env.macro
     def querydb(query):
         logger.debug("queryddb query: " + query)
-        conn = postgres_connection()
+        conn = postgres_connection(env)
         try:
             with conn:
                 with conn.cursor() as cur:
@@ -75,7 +96,7 @@ def define_env(env):
     @env.macro
     def querydb_mdtable(query):
         logger.debug("queryddb_mdtable query: " + query)
-        conn = postgres_connection()
+        conn = postgres_connection(env)
         try:
           with conn:
             with conn.cursor() as cur:

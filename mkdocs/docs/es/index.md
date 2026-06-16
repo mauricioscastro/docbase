@@ -41,3 +41,4 @@ Este documento está dirigido a administradores de sistemas, arquitectos y desar
 | VPA | Vertical Pod Autoscaling |
 
 ### Análisis y Recomendaciones de Arquitectura
+![current architecture](img/architecture.png)
