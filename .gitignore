@@ -36,6 +36,6 @@ operator/.kcdump
 cover.out
 reports/hcr/__pycache__/main.cpython-311.pyc
 
-.cache
-mkdocs/.cache
-site/
+# .cache
+# mkdocs/.cache
+# site/

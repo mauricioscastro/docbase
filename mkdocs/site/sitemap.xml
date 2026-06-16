@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>Noneindex.html</loc>
+        <lastmod>2026-03-04</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneindex.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="Nonees/index.html"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="Nonept/index.html"/>
+    </url>
+    <url>
+        <loc>Noneapiresources.html</loc>
+        <lastmod>2026-03-04</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneapiresources.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="Nonees/apiresources.html"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="Nonept/apiresources.html"/>
+    </url>
+    <url>
+        <loc>Nonept/index.html</loc>
+        <lastmod>2026-03-04</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="Nonept/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneindex.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="Nonees/index.html"/>
+    </url>
+    <url>
+        <loc>Nonept/apiresources.html</loc>
+        <lastmod>2026-03-04</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="Nonept/apiresources.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneapiresources.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="Nonees/apiresources.html"/>
+    </url>
+    <url>
+        <loc>Nonees/index.html</loc>
+        <lastmod>2026-03-04</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="Nonees/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneindex.html"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="Nonept/index.html"/>
+    </url>
+    <url>
+        <loc>Nonees/apiresources.html</loc>
+        <lastmod>2026-03-04</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="Nonees/apiresources.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneapiresources.html"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="Nonept/apiresources.html"/>
+    </url>
+</urlset>
